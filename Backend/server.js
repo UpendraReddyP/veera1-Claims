@@ -276,7 +276,7 @@ app.put('/api/claims/:id', async (req, res) => {
 // Start server
 app.listen(port, async () => {
   await initializeDatabase();
-  console.log(`Server running on http://localhost:${port}`);
+  console.log(`Server running on http://16.171.250.125:${port}`);
 });
 
 
