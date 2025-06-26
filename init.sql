@@ -10,3 +10,12 @@ CREATE TABLE IF NOT EXISTS claims (
         status VARCHAR(20) DEFAULT 'pending',
         response TEXT DEFAULT ''
       );
+
+      CREATE TABLE IF NOT EXISTS claim_attachments (
+        id SERIAL PRIMARY KEY,
+        claim_id INTEGER REFERENCES claims(id) ON DELETE CASCADE,
+        file_name VARCHAR(255) NOT NULL,
+        file_path VARCHAR(255) NOT NULL,
+        file_size INTEGER NOT NULL,
+        mime_type VARCHAR(100) NOT NULL
+      );
