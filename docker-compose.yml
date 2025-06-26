@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres2
+    ports:
+      - "5056:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin123
+      POSTGRES_DB: claims_portal
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: always
+
+  backend:
+    build: ./Backend
+    container_name: Backend2
+    ports:
+      - "3056:3056"
+    depends_on:
+      - postgres
+    environment:
+      DB_USER: postgres
+      DB_PASSWORD: admin123
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: claims_portal
+    restart: always
+    volumes:
+      - ./Backend/Uploads:/app/uploads
+
+  frontend:
+    build: ./Frontend
+    container_name: Frontend2
+    ports:
+      - "8083:80"
+    depends_on:
+      - backend
+    restart: always
+
+  hr:
+    build: ./HR
+    container_name: HR2
+    ports:
+      - "8084:80"
+    depends_on:
+      - backend
+    restart: always
+
+volumes:
+  pgdata:
+
