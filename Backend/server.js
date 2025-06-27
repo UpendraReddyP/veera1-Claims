@@ -97,7 +97,7 @@ app.get('/api/claims', async (req, res) => {
       );
       claim.attachments = attachments.map(att => ({
         name: att.file_name,
-        url: `http://16.171.250.125:3056/uploads/${encodeURIComponent(att.file_path)}`,
+        url: `http://16.170.225.247:3056/uploads/${encodeURIComponent(att.file_path)}`,
         size: att.file_size
       }));
     }
@@ -123,7 +123,7 @@ app.get('/api/claims/:id', async (req, res) => {
 
     claim.attachments = attachments.map(att => ({
       name: att.file_name,
-      url: `http://16.171.250.125:3056/uploads/${encodeURIComponent(att.file_path)}`,
+      url: `http://16.170.225.247:3056/uploads/${encodeURIComponent(att.file_path)}`,
       size: att.file_size
     }));
 
@@ -153,7 +153,7 @@ app.get('/api/claims/employee/:employeeId', async (req, res) => {
       );
       claim.attachments = attachments.map(att => ({
         name: att.file_name,
-        url: `http://16.171.250.125:3056/uploads/${encodeURIComponent(att.file_path)}`,
+        url: `http://16.170.225.247:3056/uploads/${encodeURIComponent(att.file_path)}`,
         size: att.file_size
       }));
     }
@@ -213,7 +213,7 @@ app.post('/api/claims', upload.array('attachments'), async (req, res) => {
 
     claim.attachments = attachments.map(att => ({
       name: att.file_name,
-      url: `http://16.171.250.125:3056/uploads/${encodeURIComponent(att.file_path)}`,
+      url: `http://16.170.225.247:3056/uploads/${encodeURIComponent(att.file_path)}`,
       size: att.file_size
     }));
 
@@ -255,6 +255,6 @@ app.put('/api/claims/:id', async (req, res) => {
 
 app.listen(port, async () => {
   await initializeDatabase();
-  console.log(`✅ Server running at http://16.171.250.125:${port}`);
+  console.log(`✅ Server running at http://16.170.225.247:${port}`);
 });
 
